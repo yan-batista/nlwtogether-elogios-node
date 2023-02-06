@@ -50,6 +50,25 @@ A aplicação deve:
 - [express-async-errors](https://www.npmjs.com/package/express-async-errors) - Utilizado para que o express consiga tratar erros lançados em métodos assíncronos.
 - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) - Utilizado para realizar a autenticação de usuários na aplicação.
 
+## Utilizando a aplicação
+
+Caso queira clonar o repositório e utilizar essa aplicação, para que a conexão com o banco funcione, você precisa inserir os dados do seu banco de dados no arquivo de conexão ou inserir esses dados em um arquivo de variáveis de ambiente com o mesmo nome da conexão:
+
+```ts
+const createConnection = async () => {
+  const client = new Pool({
+    host: "localhost",
+    port: 5432,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_BASENAME,
+  });
+
+  await client.connect();
+  return client;
+};
+```
+
 ## Autor
 
 - LinkedIn - [@YanBatista](https://www.linkedin.com/in/yanbatista/)
